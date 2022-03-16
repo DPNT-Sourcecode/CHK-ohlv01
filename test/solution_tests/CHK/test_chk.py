@@ -21,3 +21,10 @@ class TestCHK1():
 
     def test_chk2(self):
         assert checkout_solution.checkout(skus='CDAAABABBE') == -1
+
+    def test_chk2(self):
+        assert checkout_solution.checkout(skus='') == -1
+
+    def test_chk2(self):
+        assert checkout_solution.checkout(skus=None) == -1
+

@@ -12,7 +12,6 @@
 # | D    | 15    |                |
 # +------+-------+----------------+
 
-
 special_offers = {
     'A': {
         'count': 3,
@@ -55,12 +54,15 @@ def checkout(skus):
             total_price += prices[purchased_item]
             continue
 
-        
+        special_offer_count = special_offers[purchased_item]['count']
+        special_offer_price = special_offers[purchased_item]['price']
 
+        special_offers_number = count // special_offer_count
+        regular_purchased_item_number = count % special_offer_count
 
-        # if count <
+        total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
 
-
+    return total_price
 
 
 
