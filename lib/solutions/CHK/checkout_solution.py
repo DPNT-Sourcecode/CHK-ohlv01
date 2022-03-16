@@ -13,6 +13,30 @@
 # +------+-------+----------------+
 
 
-def checkout(skus):
-    raise NotImplementedError()
+special_offers = {
+    'A': {
+        'count': 3,
+        'price': 130
+    },
+    'B': {
+        'count': 2,
+        'price': 45
+    }
+}
 
+prices = {
+    'A': 50,
+    'B': 30,
+    'C': 20,
+    'D': 15,
+}
+
+items = prices.keys()
+
+
+def checkout(skus):
+    for sku in skus:
+        if sku not in items:
+            return -1
+
+        pass
