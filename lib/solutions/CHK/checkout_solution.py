@@ -3,14 +3,15 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-# +------+-------+----------------+
-# | Item | Price | Special offers |
-# +------+-------+----------------+
-# | A    | 50    | 3A for 130     |
-# | B    | 30    | 2B for 45      |
-# | C    | 20    |                |
-# | D    | 15    |                |
-# +------+-------+----------------+
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# +------+-------+------------------------+
 
 special_offers = {
     'A': {
@@ -67,6 +68,7 @@ def checkout(skus):
         total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
 
     return total_price
+
 
 
 
