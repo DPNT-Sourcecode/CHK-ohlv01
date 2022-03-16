@@ -33,6 +33,3 @@ class TestCHK1():
 
     def test_chk6(self):
         assert checkout_solution.checkout(skus='BABDDCAC') == 215
-
-
-

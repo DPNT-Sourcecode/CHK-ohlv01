@@ -70,10 +70,3 @@ def checkout(skus):
 
 
 
-
-
-
-
-
-
-
