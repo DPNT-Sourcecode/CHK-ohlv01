@@ -70,19 +70,37 @@ def checkout(skus):
         purchased_items[sku] += 1
 
     total_price = 0
-
+    print(purchased_items)
     for purchased_item, count in purchased_items.items():
         if purchased_item not in special_offers_discount or purchased_item not in special_offers_free:
             total_price += count * prices[purchased_item]
             continue
 
-        special_offer_discount_count = special_offers_discount[purchased_item]['count']
-        special_offer_discount_price = special_offers_discount[purchased_item]['price']
+        is_exact_special_offer_discount = False
+        final_exact_special_offer_discount_count = 0
+        final_exact_special_offer_price = 0
 
-        special_offers_number = count // special_offer_discount_count
-        regular_purchased_item_number = count % special_offer_discount_count
+        for exact_special_offer_discount in special_offers_discount[purchased_item]:
+            exact_special_offer_discount_count = exact_special_offer_discount['count']
+            exact_special_offer_price = exact_special_offer_discount['price']
 
-        total_price += special_offers_number * special_offer_discount_price + regular_purchased_item_number * prices[purchased_item]
+            if count > exact_special_offer_discount_count:
+                is_exact_special_offer_discount = True
+                final_exact_special_offer_discount_count = final_exact_special_offer_discount_count
+                final_exact_special_offer_price = exact_special_offer_price
+
+        if is_exact_special_offer_discount:
+            special_offer_discount_count = final_exact_special_offer_discount_count
+            special_offer_discount_price = final_exact_special_offer_price
+
+            special_offers_number = count // special_offer_discount_count
+            regular_purchased_item_number = count % special_offer_discount_count
+
+            total_price += special_offers_number * special_offer_discount_price + regular_purchased_item_number * prices[purchased_item]
+
+        else:
+            total_price += count * prices[purchased_item]
+
 
     return total_price
 
@@ -127,6 +145,7 @@ def checkout(skus):
     #
     #
     #
+
 
 
 
