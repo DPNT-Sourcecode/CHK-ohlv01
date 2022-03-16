@@ -34,7 +34,10 @@ items = prices.keys()
 
 
 def checkout(skus):
-    if skus is None or not skus:
+    if not skus:
+        return 0
+
+    if skus is None:
         return -1
 
     purchased_items = {}
@@ -64,6 +67,7 @@ def checkout(skus):
         total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
 
     return total_price
+
 
 
 
