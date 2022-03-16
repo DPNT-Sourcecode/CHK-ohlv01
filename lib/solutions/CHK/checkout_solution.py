@@ -1,5 +1,3 @@
-
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 
@@ -78,7 +76,19 @@ def checkout(skus):
             total_price += count * prices[purchased_item]
             continue
 
-        
+        special_offer_discount_count = special_offers_discount[purchased_item]['count']
+        special_offer_discount_price = special_offers_discount[purchased_item]['price']
+
+        special_offers_number = count // special_offer_discount_count
+        regular_purchased_item_number = count % special_offer_discount_count
+
+        total_price += special_offers_number * special_offer_discount_price + regular_purchased_item_number * prices[purchased_item]
+
+    return total_price
+
+
+
+
 
 
     # if not skus:
@@ -104,7 +114,7 @@ def checkout(skus):
     #     if purchased_item not in special_offers:
     #         total_price += count * prices[purchased_item]
     #         continue
-    #
+    # #
     #     special_offer_count = special_offers[purchased_item]['count']
     #     special_offer_price = special_offers[purchased_item]['price']
     #
@@ -117,5 +127,6 @@ def checkout(skus):
     #
     #
     #
+
 
 
