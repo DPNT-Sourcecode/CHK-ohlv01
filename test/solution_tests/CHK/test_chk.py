@@ -48,4 +48,3 @@ class TestCHK1():
 
     def test_chk_11(self):
         assert checkout_solution.checkout(skus='AAAAAAAA') == 330
-

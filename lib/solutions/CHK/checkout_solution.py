@@ -50,8 +50,19 @@ prices = {
 
 items = prices.keys()
 
-def get_special_offers_discount_counts(array, target):
-    
+def get_special_offers_discount_counts(discount_counts, total_count):
+    result = []
+    loop = 1
+
+    for x in discount_counts:
+        for y in discount_counts:
+            if x + y == total_count:
+                result.append((x, y))
+
+        discount_counts = discount_counts[loop:]
+        loop += 1
+
+    return result
 
 
 def checkout(skus):
@@ -109,34 +120,29 @@ def checkout(skus):
             final_exact_special_offer_discount_count = 0
             final_exact_special_offer_discount_price = 0
 
+            discount_counts = [discount.get('count') for discount in special_offers_discount[purchased_item]]
+            target_discounts = get_special_offers_discount_counts(discount_counts=discount_counts, total_count=count)
+
             for exact_special_offer_discount in special_offers_discount[purchased_item]:
                 exact_special_offer_discount_count = exact_special_offer_discount['count']
                 exact_special_offer_price = exact_special_offer_discount['price']
 
-                if count >= exact_special_offer_discount_count:
-                    is_exact_special_offer_discount = True
-                    final_exact_special_offer_discount_count = exact_special_offer_discount_count
-                    final_exact_special_offer_discount_price = exact_special_offer_price
+                if exact_special_offer_discount_count in target_discounts:
+                    if count >= exact_special_offer_discount_count:
+                        is_exact_special_offer_discount = True
+                        final_exact_special_offer_discount_count = exact_special_offer_discount_count
+                        final_exact_special_offer_discount_price = exact_special_offer_price
 
-            if is_exact_special_offer_discount:
-                print(final_exact_special_offer_discount_count)
-                print(final_exact_special_offer_discount_price)
-                special_offer_discount_count = final_exact_special_offer_discount_count
-                special_offer_discount_price = final_exact_special_offer_discount_price
+                    if is_exact_special_offer_discount:
+                        special_offer_discount_count = final_exact_special_offer_discount_count
+                        special_offer_discount_price = final_exact_special_offer_discount_price
 
-                special_offers_number = count // special_offer_discount_count
-                regular_purchased_item_number = count % special_offer_discount_count
+                        special_offers_number = count // special_offer_discount_count
+                        regular_purchased_item_number = count % special_offer_discount_count
 
-                total_price += special_offers_number * special_offer_discount_price + regular_purchased_item_number * prices[purchased_item]
+                        total_price += special_offers_number * special_offer_discount_price + regular_purchased_item_number * prices[purchased_item]
 
-            else:
-                total_price += count * prices[purchased_item]
+            # else:
+            #     total_price += count * prices[purchased_item]
 
     return total_price
-
-
-
-
-
-
-
