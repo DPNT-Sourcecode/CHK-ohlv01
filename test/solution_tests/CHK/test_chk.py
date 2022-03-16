@@ -11,7 +11,6 @@ from solutions.CHK import checkout_solution
 # | E    | 40    | 2E get one B free      |
 # +------+-------+------------------------+
 
-
 class TestCHK1():
 
     def test_chk(self):
@@ -40,8 +39,3 @@ class TestCHK1():
 
     def test_chk_8(self):
         assert checkout_solution.checkout(skus='CDAAABABBEE') == 20 + 15 + 130 + 50 + 45 + 80
-
-
-
-
-
