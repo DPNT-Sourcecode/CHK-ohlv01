@@ -38,7 +38,7 @@ def checkout(skus):
         return -1
 
     purchased_items = {}
-
+    print(purchased_items)
     for sku in skus:
         if sku not in items:
             return -1
@@ -64,6 +64,7 @@ def checkout(skus):
         total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
 
     return total_price
+
 
 
 

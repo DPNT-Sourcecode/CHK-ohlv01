@@ -22,9 +22,16 @@ class TestCHK1():
     def test_chk2(self):
         assert checkout_solution.checkout(skus='CDAAABABBE') == -1
 
-    def test_chk2(self):
+    def test_chk3(self):
         assert checkout_solution.checkout(skus='') == -1
 
-    def test_chk2(self):
+    def test_chk4(self):
         assert checkout_solution.checkout(skus=None) == -1
+
+    def test_chk5(self):
+        assert checkout_solution.checkout(skus='ABCDABCD') == 215 # 100 (Ax2) + 45 (Bx2) + 40 (Cx2) + 30 (Dx2)
+
+    # def test_chk6(self):
+    #     assert checkout_solution.checkout(skus='BABDDCAC') == 215
+
 
