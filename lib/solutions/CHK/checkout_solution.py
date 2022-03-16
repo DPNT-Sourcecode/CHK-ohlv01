@@ -50,6 +50,9 @@ prices = {
 
 items = prices.keys()
 
+def get_special_offers_discount_counts(array, target):
+    
+
 
 def checkout(skus):
     if not skus:
@@ -130,6 +133,7 @@ def checkout(skus):
                 total_price += count * prices[purchased_item]
 
     return total_price
+
 
 
 
