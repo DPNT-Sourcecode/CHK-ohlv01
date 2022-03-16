@@ -37,5 +37,15 @@ class TestCHK1():
     # def test_chk7(self):
     #     assert checkout_solution.checkout(skus='CDAAABABA') == 20 + 15 + 200 + 45
 
-    def test_chk_8(self):
-        assert checkout_solution.checkout(skus='CDAAABABBEE') == 20 + 15 + 130 + 50 + 45 + 80
+    # def test_chk_8(self):
+    #     assert checkout_solution.checkout(skus='CDAAABABBEE') == 20 + 15 + 130 + 50 + 45 + 80
+
+    def test_chk_9(self):
+        assert checkout_solution.checkout(skus='E') == 40
+
+    def test_chk_10(self):
+        assert checkout_solution.checkout(skus='ABCDE') == 155
+
+    def test_chk_11(self):
+        assert checkout_solution.checkout(skus='AAAAAAAA') == 330
+

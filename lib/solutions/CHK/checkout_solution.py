@@ -70,23 +70,17 @@ def checkout(skus):
         purchased_items[sku] += 1
 
     total_price = 0
+
     print(purchased_items)
 
     for purchased_item, count in purchased_items.items():
-        # print(total_price)
-        # print(purchased_item)
-
-
         if purchased_item not in special_offers_discount and purchased_item not in special_offers_free:
             total_price += count * prices[purchased_item]
             continue
 
         if purchased_item in special_offers_free:
-            # print(purchased_item)
-            # print()
-
+            print('yes')
             is_exact_special_offer_free = False
-            # final_exact_special_offer_free_count = 0
             final_exact_special_offer_free_target = None
             final_exact_special_offer_free_target_count = 0
 
@@ -94,22 +88,21 @@ def checkout(skus):
                 exact_special_offer_free_count = exact_special_offer_free['count']
                 exact_special_offer_free_target = exact_special_offer_free['target']
                 exact_special_offer_free_target_count = exact_special_offer_free['target_count']
-                # print(exact_special_offer_free_count)
-                # print(exact_special_offer_free_target)
-                # print(exact_special_offer_free_target_count)
 
                 if count >= exact_special_offer_free_count:
                     if exact_special_offer_free_target in purchased_items:
                         if purchased_items[exact_special_offer_free_target] >= exact_special_offer_free_target_count:
                             is_exact_special_offer_free = True
-                            # final_exact_special_offer_free_count = exact_special_offer_free_count
                             final_exact_special_offer_free_target = exact_special_offer_free_target
                             final_exact_special_offer_free_target_count = exact_special_offer_free_target_count
+            print(is_exact_special_offer_free)
+            print(count)
+            print(prices[purchased_item])
+
+            total_price += count * prices[purchased_item]
 
             if is_exact_special_offer_free:
-                total_price += count * prices[purchased_item]
                 purchased_items[final_exact_special_offer_free_target] -= final_exact_special_offer_free_target_count
-                print(purchased_items)
                 continue
 
         if purchased_item in special_offers_discount:
@@ -138,51 +131,8 @@ def checkout(skus):
             else:
                 total_price += count * prices[purchased_item]
 
-
-
     return total_price
 
-
-
-
-
-
-    # if not skus:
-    #     return 0
-    #
-    # if skus is None:
-    #     return -1
-    #
-    # purchased_items = {}
-    #
-    # for sku in skus:
-    #     if sku not in items:
-    #         return -1
-    #
-    #     if sku not in purchased_items:
-    #         purchased_items[sku] = 0
-    #
-    #     purchased_items[sku] += 1
-    #
-    # total_price = 0
-    #
-    # for purchased_item, count in purchased_items.items():
-    #     if purchased_item not in special_offers:
-    #         total_price += count * prices[purchased_item]
-    #         continue
-    # #
-    #     special_offer_count = special_offers[purchased_item]['count']
-    #     special_offer_price = special_offers[purchased_item]['price']
-    #
-    #     special_offers_number = count // special_offer_count
-    #     regular_purchased_item_number = count % special_offer_count
-    #
-    #     total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
-    #
-    # return total_price
-    #
-    #
-    #
 
 
 
