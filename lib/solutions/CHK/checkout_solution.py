@@ -82,6 +82,7 @@ def checkout(skus):
 
         if purchased_item in special_offers_free:
             print(purchased_item)
+            print()
 
             is_exact_special_offer_free = False
             final_exact_special_offer_free_count = 0
@@ -91,15 +92,24 @@ def checkout(skus):
             for exact_special_offer_free in special_offers_free[purchased_item]:
                 exact_special_offer_free_count = exact_special_offer_free['count']
                 exact_special_offer_free_target = exact_special_offer_free['target']
-                exact_special_offer_free_target_free = exact_special_offer_free['target_count']
+                exact_special_offer_free_target_count = exact_special_offer_free['target_count']
+                print(exact_special_offer_free_count)
+                print(exact_special_offer_free_target)
+                print(exact_special_offer_free_target_count)
 
                 if count >= exact_special_offer_free_count:
-                    is_exact_special_offer_free = True
-                    final_exact_special_offer_free_count = exact_special_offer_free_count
-                    final_exact_special_offer_free_target = exact_special_offer_free_target
-                    final_exact_special_offer_free_target_count = exact_special_offer_free_target_free
+                    if exact_special_offer_free_target in purchased_items:
+                        if exact_special_offer_free_target_count >= purchased_items[exact_special_offer_free_target]:
+                            print('yes')
+                            is_exact_special_offer_free = True
+                            final_exact_special_offer_free_count = exact_special_offer_free_count
+                            final_exact_special_offer_free_target = exact_special_offer_free_target
+                            final_exact_special_offer_free_target_count = exact_special_offer_free_target_count
 
-    if purchased_item in special_offers_discount:
+            if is_exact_special_offer_free:
+                pass
+
+        if purchased_item in special_offers_discount:
             is_exact_special_offer_discount = False
             final_exact_special_offer_discount_count = 0
             final_exact_special_offer_discount_price = 0
@@ -170,4 +180,5 @@ def checkout(skus):
     #
     #
     #
+
 
