@@ -14,16 +14,9 @@ from solutions.CHK import checkout_solution
 
 class TestCHK1():
 
-    # def test_chk(self):
-    #     assert checkout_solution.checkout(skus='CDAAABABBEE') == 20 + 15 + 130 + 50 + 45 + 80
-
-    #
     def test_chk(self):
         assert checkout_solution.checkout(skus='CDAAABAB') == 20 + 15 + 130 + 50 + 45
 
-    def test_chk_1(self):
-        assert checkout_solution.checkout(skus='CDAAABABA') == 20 + 15 + 200 + 45
-    #
     # def test_chk1(self):
     #     assert checkout_solution.checkout(skus='CDAAABABB') == 20 + 15 + 130 + 50 + 45 + 30
     #
@@ -41,6 +34,13 @@ class TestCHK1():
     #
     # def test_chk6(self):
     #     assert checkout_solution.checkout(skus='BABDDCAC') == 215
+    #
+    # def test_chk7(self):
+    #     assert checkout_solution.checkout(skus='CDAAABABA') == 20 + 15 + 200 + 45
+
+    def test_chk_8(self):
+        assert checkout_solution.checkout(skus='CDAAABABBEE') == 20 + 15 + 130 + 50 + 45 + 80
+
 
 
 
