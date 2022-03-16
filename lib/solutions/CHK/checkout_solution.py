@@ -83,14 +83,28 @@ def checkout(skus):
         if purchased_item in special_offers_free:
             print(purchased_item)
 
+            is_exact_special_offer_free = False
+            final_exact_special_offer_free_count = 0
+            final_exact_special_offer_free_target = None
+            final_exact_special_offer_free_target_count = 0
 
-        if purchased_item in special_offers_discount:
+            for exact_special_offer_free in special_offers_free[purchased_item]:
+                exact_special_offer_free_count = exact_special_offer_free['count']
+                exact_special_offer_free_target = exact_special_offer_free['target']
+                exact_special_offer_free_target_free = exact_special_offer_free['target_count']
+
+                if count >= exact_special_offer_free_count:
+                    is_exact_special_offer_free = True
+                    final_exact_special_offer_free_count = exact_special_offer_free_count
+                    final_exact_special_offer_free_target = exact_special_offer_free_target
+                    final_exact_special_offer_free_target_count = exact_special_offer_free_target_free
+
+    if purchased_item in special_offers_discount:
             is_exact_special_offer_discount = False
             final_exact_special_offer_discount_count = 0
             final_exact_special_offer_discount_price = 0
 
             for exact_special_offer_discount in special_offers_discount[purchased_item]:
-                # print(exact_special_offer_discount)
                 exact_special_offer_discount_count = exact_special_offer_discount['count']
                 exact_special_offer_price = exact_special_offer_discount['price']
 
@@ -102,9 +116,6 @@ def checkout(skus):
             if is_exact_special_offer_discount:
                 special_offer_discount_count = final_exact_special_offer_discount_count
                 special_offer_discount_price = final_exact_special_offer_discount_price
-
-                # print(special_offer_discount_count)
-                # print(special_offer_discount_price)
 
                 special_offers_number = count // special_offer_discount_count
                 regular_purchased_item_number = count % special_offer_discount_count
@@ -159,3 +170,4 @@ def checkout(skus):
     #
     #
     #
+
