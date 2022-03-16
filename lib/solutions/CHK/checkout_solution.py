@@ -62,7 +62,7 @@ def get_special_offers_discount_counts(discount_counts, total_count):
         discount_counts = discount_counts[loop:]
         loop += 1
 
-    return result
+    return result[0]
 
 
 def checkout(skus):
@@ -122,12 +122,17 @@ def checkout(skus):
 
             discount_counts = [discount.get('count') for discount in special_offers_discount[purchased_item]]
             target_discounts = get_special_offers_discount_counts(discount_counts=discount_counts, total_count=count)
-
+            print(target_discounts)
             for exact_special_offer_discount in special_offers_discount[purchased_item]:
                 exact_special_offer_discount_count = exact_special_offer_discount['count']
                 exact_special_offer_price = exact_special_offer_discount['price']
 
+                # print(exact_special_offer_discount_count)
+                # print(exact_special_offer_price)
+
                 if exact_special_offer_discount_count in target_discounts:
+                    # print(exact_special_offer_discount_count)
+                    # print()
                     if count >= exact_special_offer_discount_count:
                         is_exact_special_offer_discount = True
                         final_exact_special_offer_discount_count = exact_special_offer_discount_count
@@ -136,7 +141,8 @@ def checkout(skus):
                     if is_exact_special_offer_discount:
                         special_offer_discount_count = final_exact_special_offer_discount_count
                         special_offer_discount_price = final_exact_special_offer_discount_price
-
+                        print(special_offer_discount_count)
+                        print(special_offer_discount_price)
                         special_offers_number = count // special_offer_discount_count
                         regular_purchased_item_number = count % special_offer_discount_count
 
@@ -146,3 +152,4 @@ def checkout(skus):
             #     total_price += count * prices[purchased_item]
 
     return total_price
+
