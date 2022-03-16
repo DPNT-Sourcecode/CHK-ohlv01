@@ -31,7 +31,8 @@ class TestCHK1():
     def test_chk5(self):
         assert checkout_solution.checkout(skus='ABCDABCD') == 215 # 100 (Ax2) + 45 (Bx2) + 40 (Cx2) + 30 (Dx2)
 
-    # def test_chk6(self):
-    #     assert checkout_solution.checkout(skus='BABDDCAC') == 215
+    def test_chk6(self):
+        assert checkout_solution.checkout(skus='BABDDCAC') == 215
+
 
 

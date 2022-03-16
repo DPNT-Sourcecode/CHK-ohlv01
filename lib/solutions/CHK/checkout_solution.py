@@ -39,8 +39,6 @@ def checkout(skus):
 
     purchased_items = {}
 
-    print(skus)
-
     for sku in skus:
         if sku not in items:
             return -1
@@ -50,31 +48,23 @@ def checkout(skus):
 
         purchased_items[sku] += 1
 
-    print(purchased_items)
-
     total_price = 0
 
     for purchased_item, count in purchased_items.items():
         if purchased_item not in special_offers:
-            total_price += prices[purchased_item]
+            total_price += count * prices[purchased_item]
             continue
-
-        print(purchased_item, count)
 
         special_offer_count = special_offers[purchased_item]['count']
         special_offer_price = special_offers[purchased_item]['price']
 
-        if count < special_offer_count:
-            total_price += count * prices[purchased_item]
-
         special_offers_number = count // special_offer_count
-        print(special_offers_number)
         regular_purchased_item_number = count % special_offer_count
-        print(regular_purchased_item_number)
 
         total_price += special_offers_number * special_offer_price + regular_purchased_item_number * prices[purchased_item]
-        print()
+
     return total_price
+
 
 
 
